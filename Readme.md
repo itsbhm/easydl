@@ -1,4 +1,3 @@
-````markdown
 # 📥 EasyDL
 
 **EasyDL** is a simple, lightweight Bash script to download **YouTube videos and audio** using [yt-dlp](https://github.com/yt-dlp/yt-dlp).  
