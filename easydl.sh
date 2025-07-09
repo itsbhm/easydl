@@ -146,12 +146,12 @@ elif [ "$mode" == "2" ]; then
     read -rp "Enter choice [1-6]: " a_choice
 
     case "$a_choice" in
-        1) audio_format="bestaudio"; ext="mp3"; post_args="" ;;
-        2) audio_format="bestaudio"; ext="mp3"; post_args="--audio-quality 128K" ;;
-        3) audio_format="bestaudio"; ext="mp3"; post_args="--audio-quality 320K" ;;
-        4) audio_format="bestaudio"; ext="m4a"; post_args="" ;;
-        5) audio_format="bestaudio"; ext="opus"; post_args="" ;;
-        6) audio_format="bestaudio"; ext="wav"; post_args="" ;;
+        1) audio_format="bestaudio"; ext="mp3"; audio_quality="" ;;
+        2) audio_format="bestaudio"; ext="mp3"; audio_quality="--audio-quality 128K" ;;
+        3) audio_format="bestaudio"; ext="mp3"; audio_quality="--audio-quality 320K" ;;
+        4) audio_format="bestaudio"; ext="m4a"; audio_quality="" ;;
+        5) audio_format="bestaudio"; ext="opus"; audio_quality="" ;;
+        6) audio_format="bestaudio"; ext="wav"; audio_quality="" ;;
         *) error_exit "Invalid audio option." ;;
     esac
 
@@ -168,7 +168,7 @@ elif [ "$mode" == "2" ]; then
     echo ""
     echo "🎵 Downloading audio file(s)..."
     yt-dlp $adv_opts -f "$audio_format" \
-        --extract-audio --audio-format "$ext" $post_args \
+        --extract-audio --audio-format "$ext" $audio_quality \
         $playlist \
         -o "$outdir/%(title)s.%(ext)s" \
         $urls || error_exit "Audio download failed."
